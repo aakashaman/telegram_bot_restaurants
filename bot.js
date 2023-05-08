@@ -87,11 +87,11 @@ bot.onText(/\/list/, (msg) => {
     const name = product.name;
     const price = product.price;
 
-    message += `${i+1}. ${name} - ${price} USD\n`;
+    message += `${i+1}. ${name} - ${price} Rs.\n`;
 
     // Send the photo with the product name, price, and an "Add to cart" button
     bot.sendPhoto(msg.chat.id, photoUrl, {
-      caption: `${name} - ${price} USD\n\ntap add to cart to add item and to repeat again tap. use /cart to see your cart.`,
+      caption: `${name} - ${price} Rs.\n\ntap add to cart to add item and to repeat again tap. use /cart to see your cart.`,
       reply_markup: {
         inline_keyboard: [
           [
@@ -125,14 +125,14 @@ bot.onText(/\/cart/, (msg) => {
         const price = product.price;
         const subtotal = price * quantity;
 
-        message += `${name} x${quantity} - ${price} USD each\n`;
-        message += `Subtotal: ${subtotal} USD\n\n`;
+        message += `${name} x${quantity} - ${price} Rs each\n`;
+        message += `Subtotal: ${subtotal} Rs\n\n`;
 
         total += subtotal;
       }
     }
 
-    message += `Total: ${total} USD \n\n use /placeorder command to place your order.`;
+    message += `Total: ${total} Rs \n\n use /placeorder command to place your order.`;
   }
 
   bot.sendMessage(msg.chat.id, message);
@@ -178,11 +178,11 @@ bot.onText(/\/placeorder/, (msg) => {
                   const name = product.name;
                   const price = product.price;
                   const subtotal = price * quantity;
-                  message += `${name} x${quantity} - ${price} USD each\nSubtotal: ${subtotal} USD\n\n`;
+                  message += `${name} x${quantity} - ${price} Rs. each\nSubtotal: ${subtotal} Rs.\n\n`;
                   total += subtotal;
                 }
               }
-              message += `Total: ${total} USD`;
+              message += `Total: ${total} Rs.`;
 
               // Send the message to the seller's chat ID with confirm and cancel buttons
               bot.sendMessage(5805230149, `new order from user ${chatId}:\n\n${message}`, {
